@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>JobConnect</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Job Posting Form Styling */
+    .post-job {
+      padding: 40px;
+      text-align: center;
+      background: #ffffff;
+      margin: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .post-job input,
+    .post-job textarea {
+      width: 60%;
+      padding: 10px;
+      margin: 8px;
+    }
+
+    .post-job button {
+      padding: 10px 20px;
+      background: #0a66c2;
+      color: white;
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="navbar">
+  <h2 class="logo">JobConnect</h2>
+  <nav>
+    <a href="#">Jobs</a>
+    <a href="#">Companies</a>
+    <a href="#">Login</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Find Your Dream Job</h1>
+  <p>Explore top opportunities from leading companies</p>
+
+
+  <div class="search-box">
+    <input type="text" id="name" placeholder="Enter Your Name">
+    <input type="text" id="skill" placeholder="Enter Your Skills">
+    <input type="text" id="locationInput" placeholder="Preferred Location">
+    <button id="submitBtn">Search</button>
+  </div>
+</section>
+
+
+<section id="profileSection" style="display:none; text-align:center; padding:30px;">
+  <h2>User Profile</h2>
+  <p id="new-name"></p>
+  <p id="new-skill"></p>
+  <p id="new-location"></p>
+</section>
+
+
+<section class="post-job">
+  <h2>Post a Job</h2>
+
+  <input type="text" id="jobTitle" placeholder="Job Title"><br>
+  <input type="text" id="companyName" placeholder="Company Name"><br>
+  <input type="text" id="jobLocation" placeholder="Location"><br>
+  <textarea id="jobDesc" placeholder="Job Description"></textarea><br>
+
+  <button id="addJobBtn">Submit</button>
+</section>
+
+<section class="categories">
+  <h2>Popular Categories</h2>
+  <div class="category-box">
+    <div>Software</div>
+    <div>Data Science</div>
+    <div>Marketing</div>
+    <div>Design</div>
+  </div>
+</section>
+
+<section class="jobs">
+  <h2>Featured Jobs</h2>
+  <div class="job-container" id="jobContainer">
+
+
+  </div>
+</section>
+
+<footer class="footer">
+  <p>© 2026 JobConnect. All rights reserved.</p>
+</footer>
+
+<script>
+
+
+document.getElementById("submitBtn").addEventListener("click", function(){
+
+  var name = document.getElementById("name").value;
+  var skill = document.getElementById("skill").value;
+  var location = document.getElementById("locationInput").value;
+  document.getElementById("new-name").innerText = "Name: " + name;
+  document.getElementById("new-skill").innerText = "Skills: " + skill;
+  document.getElementById("new-location").innerText = "Preferred Location: " + location;
+  document.getElementById("profileSection").style.display = "block";
+});
+
+document.getElementById("addJobBtn").addEventListener("click", function(){
+
+  var title = document.getElementById("jobTitle").value;
+  var company = document.getElementById("companyName").value;
+  var location = document.getElementById("jobLocation").value;
+  var desc = document.getElementById("jobDesc").value;
+
+  
+  var card = document.createElement("div");
+  card.classList.add("job-card");
+
+
+  var h3 = document.createElement("h3");
+  h3.textContent = title;
+
+  var p = document.createElement("p");
+  p.textContent = company + " · " + location;
+
+  var description = document.createElement("p");
+  description.textContent = desc;
+
+  var btn = document.createElement("button");
+  btn.textContent = "Apply";
+
+  card.append(h3);
+  card.append(p);
+  card.append(description);
+  card.append(btn);
+
+  document.getElementById("jobContainer").append(card);
+
+  document.getElementById("jobTitle").value = "";
+  document.getElementById("companyName").value = "";
+  document.getElementById("jobLocation").value = "";
+  document.getElementById("jobDesc").value = "";
+
+});
+
+</script>
+
+</body>
+</html>
